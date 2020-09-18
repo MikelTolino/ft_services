@@ -1,6 +1,7 @@
-FROM alpine
+FROM alpine:3.12
 
 COPY srcs /tmp
-RUN chmod 777 /tmp/nginx.sh && ./tmp/nginx.sh
+RUN chmod 755 /tmp/nginx.sh && \
+	./tmp/nginx.sh
 EXPOSE 80 443
-CMD ["service nginx start"]
+ENTRYPOINT nginx -g "daemon off;"
